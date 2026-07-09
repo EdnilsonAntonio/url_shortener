@@ -53,7 +53,8 @@ func CreateLinkHandler(conn *pgx.Conn) http.HandlerFunc {
 		query := `INSERT INTO links(short_code, original_url) VALUES ($1, $2)`
 		_, err := conn.Exec(context.Background(), query, shortCode, req.URL)
 		if err != nil {
-			http.Error(w, "Erro ao guardar link no banco", http.StatusInternalServerError)
+			http.Error(w, "Erro ao guardar link no banco", http.StatusInternalServerError);
+			log.Printf("ERRO DETALHADO NO BANCO: %v", err);
 			return
 		}
 
