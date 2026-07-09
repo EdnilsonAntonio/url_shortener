@@ -20,6 +20,6 @@ services:
       - .env 
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.api.rule=Host(`short.local`)"
+      - "traefik.http.routers.api-router.rule=Host(`short.local`) || Host(`44.222.165.255`)"
       - "traefik.http.services.api.loadbalancer.server.port=8000"
     # Remova a secção 'environment' anterior se estiver a usar o 'env_file'
