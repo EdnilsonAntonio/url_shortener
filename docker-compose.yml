@@ -22,4 +22,9 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.api-router.rule=Host(`short.local`) || Host(`44.222.165.255`)"
       - "traefik.http.services.api.loadbalancer.server.port=8000"
+      # Configuração de CORS para permitir requisições do frontend
+      - "traefik.http.middlewares.cors-api.headers.accesscontrolallowmethods=GET,POST,DELETE,OPTIONS"
+      - "traefik.http.middlewares.cors-api.headers.accesscontrolalloworiginlist=http://localhost:5173"
+      - "traefik.http.middlewares.cors-api.headers.accesscontrolallowheaders=Content-Type,Authorization"
+      - "traefik.http.routers.api-router.middlewares=cors-api"
     # Remova a secção 'environment' anterior se estiver a usar o 'env_file'
